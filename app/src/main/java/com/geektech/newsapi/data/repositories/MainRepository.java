@@ -15,6 +15,7 @@ import retrofit2.Response;
 public class MainRepository {
 private final String API_KEY = "1cbeb979e984402297862ae437592b89";
     private NewsApi api;
+    private MutableLiveData<Resource<MainResponse>> liveData = new MutableLiveData<>();
 
     @Inject
     public MainRepository(NewsApi api){
@@ -22,7 +23,7 @@ private final String API_KEY = "1cbeb979e984402297862ae437592b89";
     }
 
     public MutableLiveData<Resource<MainResponse>> getTopNews(){
-MutableLiveData<Resource<MainResponse>> liveData = new MutableLiveData<>();
+
 liveData.setValue(Resource.loading());
          api.getTopNews("ru", API_KEY).enqueue(new Callback<MainResponse>() {
             @Override
@@ -45,7 +46,6 @@ liveData.setValue(Resource.loading());
 
     }
     public MutableLiveData<Resource<MainResponse>> getNewsByCategory(String category){
-        MutableLiveData<Resource<MainResponse>> liveData = new MutableLiveData<>();
         liveData.setValue(Resource.loading());
         api.getNewsByCategory("ru", category, API_KEY).enqueue(new Callback<MainResponse>() {
             @Override
@@ -69,7 +69,6 @@ liveData.setValue(Resource.loading());
     }
 
     public MutableLiveData<Resource<MainResponse>> getNewsByWord(String keyWord){
-        MutableLiveData<Resource<MainResponse>> liveData = new MutableLiveData<>();
         liveData.setValue(Resource.loading());
         api.getNewsByKeyWord(keyWord, API_KEY).enqueue(new Callback<MainResponse>() {
             @Override

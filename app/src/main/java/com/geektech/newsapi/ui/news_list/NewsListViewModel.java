@@ -16,6 +16,9 @@ public class NewsListViewModel extends ViewModel {
 
     private MainRepository repository;
     public LiveData<Resource<MainResponse>> newsLiveData;
+    public LiveData<Resource<MainResponse>> news;
+
+
 
     @Inject
     public NewsListViewModel(MainRepository repository) {
